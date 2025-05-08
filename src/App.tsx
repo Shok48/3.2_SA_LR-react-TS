@@ -2,6 +2,7 @@ import { type ReactNode } from "react"
 import styles from "./App.module.css"
 import { Header } from "antd/es/layout/layout"
 import { Link, Route, BrowserRouter as Router, Routes } from "react-router-dom"
+import HomePage from "./Pages/HomePage/HomePage"
 
 interface RouteConfig {
     path: string,
@@ -13,7 +14,7 @@ const routes: RouteConfig[] = [
     {
         path: '/',
         label: 'Главная',
-        children: null,
+        children: <HomePage/>,
     },
     {
         path: '/LR_1',
