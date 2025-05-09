@@ -3,6 +3,8 @@ import styles from "./App.module.css"
 import { Header } from "antd/es/layout/layout"
 import { Link, Route, BrowserRouter as Router, Routes } from "react-router-dom"
 import HomePage from "./Pages/HomePage/HomePage"
+import ConverterPage from "./Pages/ConverterPage/ConverterPage"
+import '@ant-design/v5-patch-for-react-19';
 
 interface RouteConfig {
     path: string,
@@ -19,7 +21,7 @@ const routes: RouteConfig[] = [
     {
         path: '/LR_1',
         label: 'Конвертер',
-        children: null
+        children: <ConverterPage/>
     }
 ]
 

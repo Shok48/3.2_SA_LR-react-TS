@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo, useState, type FC } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import { Button, Card, Dropdown, Flex, message, Popconfirm, Space, Splitter, Typography, type MenuProps } from 'antd';
 import { DeleteOutlined, DownloadOutlined, DownOutlined, UploadOutlined, PlusOutlined } from "@ant-design/icons"
 import FieldManager from "./FieldManager";
