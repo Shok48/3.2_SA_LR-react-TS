@@ -1,12 +1,13 @@
 import styles from './BasePage.module.css';
 import { Card } from "antd";
 import { Typography } from 'antd'
+import type { ReactNode } from 'react';
 
 const { Title } = Typography;
 
 interface Props {
     title: string,
-    children?: React.ReactNode,
+    children?: ReactNode,
 }
 
 const BasePage = (props: Props) => (
@@ -17,7 +18,7 @@ const BasePage = (props: Props) => (
             </Title>
         }
         variant='borderless'
-        className={styles.card}
+        className={styles.page}
     >
         {props.children}
     </Card>
