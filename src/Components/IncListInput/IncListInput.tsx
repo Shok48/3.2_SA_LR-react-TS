@@ -1,4 +1,4 @@
-import { useCallback, useMemo, useState, type FC } from "react";
+import { useCallback, useEffect, useMemo, useState, type FC } from "react";
 import { Button, Card, Dropdown, Flex, message, Popconfirm, Space, Splitter, Typography, type MenuProps } from 'antd';
 import { DeleteOutlined, DownloadOutlined, DownOutlined, UploadOutlined, PlusOutlined } from "@ant-design/icons"
 import FieldManager from "./FieldManager";
@@ -7,10 +7,11 @@ import type { Graph } from "../../Types/Graph.types";
 const { Title, Text } = Typography;
 
 interface IncListInputProps {
+    onGraphChange: (graph: Graph) => void,
     side?: 'right' | 'left',
 }
 
-function fromIncList(incList: Record<number, number[]>, side: 'right' | 'left' = 'left'): Graph {
+export function fromIncList(incList: Record<number, number[]>, side: 'right' | 'left' = 'left'): Graph {
     const nodes = Object.keys(incList).map(Number);
     
     const edges = Object.entries(incList).flatMap(([key, values]) =>
@@ -24,7 +25,7 @@ function fromIncList(incList: Record<number, number[]>, side: 'right' | 'left' =
     return { nodes, edges };
 }
 
-const IncListInput: FC<IncListInputProps> = ({ side = 'left' }) => {
+const IncListInput = ({onGraphChange, side = 'left' }: IncListInputProps) => {
     const [fields, setFields] = useState<Record<number, number[]>>({
         1: [2, 3],
         2: [3],
@@ -34,6 +35,8 @@ const IncListInput: FC<IncListInputProps> = ({ side = 'left' }) => {
     const fieldEntries = useMemo(() => Object.entries(fields), [fields]);
 
     const graph = useMemo(() => fromIncList(fields, side), [fields, side])
+
+    useEffect(() => onGraphChange(graph), [graph, onGraphChange])
 
     const handleAddInput = useCallback((id: number) => 
         setFields(prev => ({
