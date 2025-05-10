@@ -11,14 +11,14 @@ interface IncListInputProps {
     side?: 'right' | 'left',
 }
 
-export function fromIncList(incList: Record<number, number[]>, side: 'right' | 'left' = 'left'): Graph {
+function fromIncList(incList: Record<number, number[]>, side: 'right' | 'left' = 'left'): Graph {
     const nodes = Object.keys(incList).map(Number);
     
     const edges = Object.entries(incList).flatMap(([key, values]) =>
         values.map(value => 
             side === 'left' 
-                ? { source: +key, target: value } 
-                : { source: value, target: +key }
+                ? { source: +key, target: +value } 
+                : { source: +value, target: +key }
         )
     );
 
